@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   RouterProvider,
   createBrowserRouter,
@@ -6,36 +6,45 @@ import {
   Route
 } from 'react-router-dom';
 
+import axios from 'axios';
+
 import NavLayout from './layouts/NavLayout';
 import Home from './pages/Home';
 import BlogsList from './pages/BlogsList'
 import BlogDetails from './pages/BlogDetails';
 import NewBlog from './pages/NewBlog';
 
-import blogsData from './api/mockApi'
-import useGetBlogs from './api/api'
-import { useEffect } from 'react';
+const API_URL = process.env.REACT_APP_API_URL;
 
 function App() {
+  const [blogs, setBlogs] = useState([]);
 
-  const [blogs, setBlogs] = useState([])
-
+  const fetchBlogs = async () => {
+    try {
+        const { data } = await axios(API_URL);
+        setBlogs(data.blogs)
+    } catch (error) {
+        console.log(error)
+    }
+  }
+    
   useEffect(() => {
-    setBlogs(blogsData)
+    fetchBlogs()
   }, [])
-
-  useGetBlogs()
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route element={ <NavLayout /> } >
-        <Route index element={ <Home /> } />
-        <Route exact path="blogs" element={ <BlogsList blogs={blogs} /> } />
-        <Route path="blogs/:id" element={ <BlogDetails blogs={blogs}/> } />
-        <Route path="new-blog" element={ <NewBlog blogs={blogs} setBlogs={setBlogs} /> } />
+      <Route element={<NavLayout />}>
+        <Route index element={<Home />} />
+        <Route exact path="blogs" element={<BlogsList blogs={blogs} />} />
+        <Route path="blogs/:id" element={<BlogDetails blogs={blogs} />} />
+        <Route
+          path="new-blog"
+          element={<NewBlog blogs={blogs} setBlogs={setBlogs} />}
+        />
       </Route>
     )
-  )
+  );
 
   return (
     <div className="App">
