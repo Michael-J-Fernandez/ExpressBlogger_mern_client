@@ -9,6 +9,7 @@ import {
 import NavLayout from './layouts/NavLayout';
 import Home from './pages/Home';
 import BlogsList from './pages/BlogsList'
+import BlogDetails from './pages/BlogDetails';
 import NewBlog from './pages/NewBlog';
 
 import blogsData from './api/api'
@@ -26,7 +27,8 @@ function App() {
     createRoutesFromElements(
       <Route element={ <NavLayout /> } >
         <Route index element={ <Home /> } />
-        <Route path="blogs" element={ <BlogsList blogs={blogs} /> } />
+        <Route exact path="blogs" element={ <BlogsList blogs={blogs} /> } />
+        <Route path="blogs/:id" element={ <BlogDetails blogs={blogs}/> } />
         <Route path="new-blog" element={ <NewBlog blogs={blogs} setBlogs={setBlogs} /> } />
       </Route>
     )
