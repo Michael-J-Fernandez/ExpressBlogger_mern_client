@@ -6,8 +6,6 @@ import {
   Route
 } from 'react-router-dom';
 
-import axios from 'axios';
-
 import NavLayout from './layouts/NavLayout';
 import Home from './pages/Home';
 import BlogsList from './pages/BlogsList'
@@ -39,7 +37,7 @@ function App() {
         <Route path="blogs/:id" element={<BlogDetails blogs={blogs} />} />
         <Route
           path="new-blog"
-          element={<NewBlog blogs={blogs} setBlogs={setBlogs} />}
+          element={<NewBlog setBlogs={setBlogs} />}
         />
       </Route>
     )
