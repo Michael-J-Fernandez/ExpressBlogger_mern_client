@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"
 import api from "../api/blogs";
 
 const NewBlog = ({ setBlogs }) => {
+
+  const navigate = useNavigate();
+
   const formReset = {
     title: "",
     author: "",
@@ -25,8 +29,11 @@ const NewBlog = ({ setBlogs }) => {
 
     try {
       const response = await api.post("/", newBlog);
+      const { savedBlog } = response.data;
 
-      setBlogs((prev) => [...prev, response.data.savedBlog]);
+      setBlogs((prev) => [...prev, savedBlog]);
+      navigate(`/blogs/${savedBlog.id}`)
+      
     } catch (error) {
       console.log(error.message);
     }
