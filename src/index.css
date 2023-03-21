@@ -86,3 +86,8 @@ code {
 .new-blog-form > * {
   margin: 1em;
 }
+
+.back-link {
+  text-decoration: none;
+  color: black;
+}
