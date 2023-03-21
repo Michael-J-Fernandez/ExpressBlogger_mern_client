@@ -12,7 +12,8 @@ import BlogsList from './pages/BlogsList'
 import BlogDetails from './pages/BlogDetails';
 import NewBlog from './pages/NewBlog';
 
-import blogsData from './api/api'
+import blogsData from './api/mockApi'
+import useGetBlogs from './api/api'
 import { useEffect } from 'react';
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
   useEffect(() => {
     setBlogs(blogsData)
   }, [])
+
+  useGetBlogs()
 
   const router = createBrowserRouter(
     createRoutesFromElements(
