@@ -44,30 +44,34 @@ code {
 }
 
 .main-content {
-
   margin: 140px;
 }
 
 .blogs {
   width: 100%;
-
 }
 
 .blog-card {
-  border: 1px solid black;
-  border-radius: 5px;
-  margin: .2em 15%;
-  padding: 20px 40px;
+  border-bottom: 4px solid rgb(154, 154, 154);
+  /* border-radius: 5px; */
+  margin: 0 10%;
+  padding: 10px 50px 20px;
+  min-width: 200px;
 }
 
 .blog-card:hover {
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(236, 236, 236);
   cursor: pointer;
 }
 
-.blog-card > * {
-  margin: .2em;
-  padding: 0;
+.blog-card * {
+  margin: 0;
+  padding: .1em;
+}
+
+.blog-card a {
+  text-decoration: none;
+  color: black;
 }
 
 .new-blog-form {
