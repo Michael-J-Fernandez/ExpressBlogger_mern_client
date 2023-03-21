@@ -1,42 +1,38 @@
-import { useState } from 'react';
-import api from '../api/blogs'
+import { useState } from "react";
+import api from "../api/blogs";
 
-const NewBlog = ({ blogs, setBlogs }) => {
-
+const NewBlog = ({ setBlogs }) => {
   const formReset = {
     title: "",
     author: "",
     categories: [],
-    text: ""
-  }
+    text: "",
+  };
 
-  const [newBlog, setNewBlog] = useState(formReset)
+  const [newBlog, setNewBlog] = useState(formReset);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setNewBlog(prevState => ({
-        ...prevState,
-        [name]: value
-    }))
-  }
+    setNewBlog((prevBlogState) => ({
+      ...prevBlogState,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await api.post('/', newBlog)
+      const response = await api.post("/", newBlog);
 
-      setBlogs(prev => ([
-          ...prev,
-          response.data
-      ]))
+      setBlogs((prev) => [...prev, response.data.savedBlog]);
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
-    
-    setNewBlog(formReset)
-  }
+
+    setNewBlog(formReset);
+  };
 
   return (
     <form className="new-blog-form" onSubmit={handleSubmit}>
@@ -86,6 +82,6 @@ const NewBlog = ({ blogs, setBlogs }) => {
       <button type="submit">Post</button>
     </form>
   );
-}
- 
+};
+
 export default NewBlog;
