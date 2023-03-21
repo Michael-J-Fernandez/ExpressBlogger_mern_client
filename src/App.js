@@ -34,11 +34,11 @@ function App() {
       <Route element={<NavLayout />}>
         <Route index element={<Home />} />
         <Route exact path="blogs" element={<BlogsList blogs={blogs} />} />
-        <Route path="blogs/:id" element={<BlogDetails blogs={blogs} />} />
         <Route
-          path="new-blog"
-          element={<NewBlog setBlogs={setBlogs} />}
+          path="blogs/:id"
+          element={<BlogDetails blogs={blogs} setBlogs={setBlogs} />}
         />
+        <Route path="new-blog" element={<NewBlog setBlogs={setBlogs} />} />
       </Route>
     )
   );
