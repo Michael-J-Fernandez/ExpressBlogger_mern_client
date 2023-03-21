@@ -13,15 +13,14 @@ import Home from './pages/Home';
 import BlogsList from './pages/BlogsList'
 import BlogDetails from './pages/BlogDetails';
 import NewBlog from './pages/NewBlog';
-
-const API_URL = process.env.REACT_APP_API_URL;
+import api from './api/blogs';
 
 function App() {
   const [blogs, setBlogs] = useState([]);
 
   const fetchBlogs = async () => {
     try {
-        const { data } = await axios(API_URL);
+        const { data } = await api.get('/');
         setBlogs(data.blogs)
     } catch (error) {
         console.log(error)
