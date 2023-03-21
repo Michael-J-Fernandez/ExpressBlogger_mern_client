@@ -1,19 +1,19 @@
-import { useEffect } from 'react';
-import axios from 'axios';
+// import { useEffect } from 'react';
+// import axios from 'axios';
 
-const useGetBlogs = () => {
-    const fetchBlogs = async () => {
-        try {
-            const { data } = await axios("http://localhost:8000/api/blogs");
-            console.log(data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
+// const useGetBlogs = (setBlogs) => {
+//     const fetchBlogs = async () => {
+//         try {
+//             const { data } = await axios("http://localhost:8000/api/blogs");
+//             setBlogs(data)
+//         } catch (error) {
+//             console.log(error)
+//         }
+//     }
         
-    useEffect(() => {
-        fetchBlogs()
-    }, [])
-}
+//     useEffect(() => {
+//         fetchBlogs()
+//     }, [])
+// }
 
-export default useGetBlogs
+// export default useGetBlogs
