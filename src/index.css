@@ -7,11 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 .nav-main {
   position: fixed;
   display: flex;
@@ -53,7 +48,6 @@ code {
 
 .blog-card {
   border-bottom: 4px solid rgb(154, 154, 154);
-  /* border-radius: 5px; */
   margin: 0 10%;
   padding: 10px 50px 20px;
   min-width: 200px;
