@@ -8,7 +8,7 @@ const BlogDetails = ({ blogs }) => {
 
     return (
       <>
-        <Link to=".." relative="path">
+        <Link className={"back-link"} to=".." relative="path">
           ⬅️ Back to Blogs
         </Link>
         {singleBlog && (
