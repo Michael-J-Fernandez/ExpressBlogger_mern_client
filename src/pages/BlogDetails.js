@@ -25,10 +25,13 @@ const BlogDetails = ({ blogs, setBlogs }) => {
   const blogDetailsCard = singleBlog && (
     <>
       <h1>{singleBlog.title}</h1>
-      <h3>{singleBlog.author}</h3>
+      <h3>By: {singleBlog.author}</h3>
+      <p><strong>Categories: </strong>{singleBlog.categories}</p>
       <p>{singleBlog.text}</p>
     </>
   );
+
+  console.log(singleBlog.categories);
 
   const currentBlog = singleBlog ? (
     {
