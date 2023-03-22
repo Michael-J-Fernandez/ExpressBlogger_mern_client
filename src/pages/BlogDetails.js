@@ -26,7 +26,10 @@ const BlogDetails = ({ blogs, setBlogs }) => {
     <>
       <h1>{singleBlog.title}</h1>
       <h3>By: {singleBlog.author}</h3>
-      <p><strong>Categories: </strong>{singleBlog.categories}</p>
+      <p>
+        <strong>Categories: </strong>
+        {singleBlog.categories}
+      </p>
       <p>{singleBlog.text}</p>
     </>
   );
