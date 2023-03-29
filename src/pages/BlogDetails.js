@@ -34,8 +34,6 @@ const BlogDetails = ({ blogs, setBlogs }) => {
     </>
   );
 
-  console.log(singleBlog.categories);
-
   const currentBlog = singleBlog ? (
     {
       title: singleBlog.title,
