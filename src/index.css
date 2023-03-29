@@ -24,6 +24,7 @@ body {
 .nav-main a {
   text-decoration: none;
   color: rgb(70, 70, 70);
+  padding-bottom: 0;
 }
 
 .home-title {
@@ -37,6 +38,7 @@ body {
   gap: 2em;
   margin-right: 100px;
 }
+
 
 .main-content {
   margin: 140px;
@@ -74,7 +76,6 @@ body {
   align-items: center;
   width: 80%;
   margin: auto;
-  border: 1px solid black;
 }
 
 .new-blog-form > * {
