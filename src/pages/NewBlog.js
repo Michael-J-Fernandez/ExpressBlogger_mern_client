@@ -32,7 +32,7 @@ const NewBlog = ({ setBlogs }) => {
       const { savedBlog } = response.data;
 
       setBlogs((prev) => [...prev, savedBlog]);
-      navigate(`/blogs/${savedBlog.id}`)
+      navigate(`/blogs/${savedBlog.id}`);
       
     } catch (error) {
       console.log(error.message);
