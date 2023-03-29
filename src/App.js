@@ -7,10 +7,14 @@ import {
 } from 'react-router-dom';
 
 import NavLayout from './layouts/NavLayout';
+import Login from './pages/Login'
+import Logout from './pages/Logout'
+import Register from './pages/Register'
 import Home from './pages/Home';
 import BlogsList from './pages/BlogsList'
 import BlogDetails from './pages/BlogDetails';
 import NewBlog from './pages/NewBlog';
+
 import api from './api/blogs';
 
 function App() {
@@ -33,6 +37,9 @@ function App() {
     createRoutesFromElements(
       <Route element={<NavLayout />}>
         <Route index element={<Home />} />
+        <Route path="login" element={<Login />} />
+        <Route path="logout" element={<Logout />} />
+        <Route path="register" element={<Register />} />
         <Route exact path="blogs" element={<BlogsList blogs={blogs} />} />
         <Route
           path="blogs/:id"
