@@ -15,9 +15,6 @@ const NavLayout = () => {
                 <NavLink to="/" style={({isActive}) => isActive ? active : null}><h1>Home</h1></NavLink>
                 <NavLink to="blogs" style={({isActive}) => isActive ? active : null}><h1>Blogs</h1></NavLink>
                 <NavLink to="new-blog" style={({isActive}) => isActive ? active : null}><h1>+ New</h1></NavLink>
-                <NavLink to="login" style={({isActive}) => isActive ? active : null}><h1>Log in</h1></NavLink>
-                <NavLink to="logout" style={({isActive}) => isActive ? active : null}><h1>Log out</h1></NavLink>
-                <NavLink to="register" style={({isActive}) => isActive ? active : null}><h1>Register</h1></NavLink>
             </div>
         </nav>
         <main className="main-content">
