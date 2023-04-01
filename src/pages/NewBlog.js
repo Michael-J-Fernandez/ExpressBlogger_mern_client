@@ -28,7 +28,7 @@ const NewBlog = ({ setBlogs }) => {
     e.preventDefault();
 
     try {
-      const response = await api.post("/", newBlog);
+      const response = await api.post("/blogs", newBlog);
       const { savedBlog } = response.data;
 
       setBlogs((prev) => [...prev, savedBlog]);

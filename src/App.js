@@ -22,7 +22,7 @@ function App() {
 
   const fetchBlogs = async () => {
     try {
-        const { data } = await api.get('/');
+        const { data } = await api.get('/blogs');
         setBlogs(data.blogs)
     } catch (error) {
         console.log(error)
