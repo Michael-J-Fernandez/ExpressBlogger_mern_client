@@ -1,4 +1,5 @@
 import { useState } from "react";
+import api from "../api/blogs"
 
 const Register = () => {
   const resetInput = {
@@ -14,8 +15,10 @@ const Register = () => {
     setRegisterInput((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    await api.post("/users/register", registerInput);
 
     setRegisterInput(resetInput);
   };
@@ -45,6 +48,6 @@ const Register = () => {
       <button type="submit">Register</button>
     </form>
   );
-}
- 
+};
+
 export default Register;
