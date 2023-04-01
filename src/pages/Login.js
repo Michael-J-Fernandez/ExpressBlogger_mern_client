@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import api from "../api/blogs";
+
 const Login = () => {
   const resetInput = {
     email: "",
@@ -12,18 +14,19 @@ const Login = () => {
     const { name, value } = e.target;
 
     setLoginInput((prev) => ({ ...prev, [name]: value }));
-    console.log(loginInput);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(loginInput);
+
+    await api.post("/users/login", loginInput);
+
+    setLoginInput(resetInput);
   };
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
       <label htmlFor="email">
-        {" "}
         Email:
         <input
           type="email"
@@ -34,7 +37,6 @@ const Login = () => {
         />
       </label>
       <label htmlFor="password">
-        {" "}
         Password:
         <input
           type="password"
@@ -44,6 +46,7 @@ const Login = () => {
           value={loginInput.password}
         />
       </label>
+      <button type="submit">Login</button>
     </form>
   );
 };
