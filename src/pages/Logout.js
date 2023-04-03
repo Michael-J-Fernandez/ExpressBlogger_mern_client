@@ -1,19 +1,15 @@
-import { useEffect } from "react"
+import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import api from "../api/blogs"
 
 const Logout = () => {
+  useEffect(() => {
+    const logOut = async () => {
+      localStorage.removeItem(process.env.REACT_APP_TOKEN_HEADER_KEY);
+    };
+    logOut();
+  });
 
-    useEffect(() => {
-        const logOut = async () => {
-            await api.get("/users/logout");
-        }
-        logOut();
-    })
+  return <Navigate to="/" />;
+};
 
-    return (
-        <Navigate to="/" />
-    );
-}
- 
 export default Logout;
