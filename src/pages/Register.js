@@ -1,5 +1,5 @@
 import { useState } from "react";
-import api from "../api/blogs"
+import api from "../api/blogs";
 
 const Register = () => {
   const resetInput = {
@@ -18,7 +18,14 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await api.post("/users/register", registerInput);
+    const userData = await api.post("/users/register", registerInput);
+
+    const { user, token } = userData.data;
+
+    localStorage.setItem(
+      process.env.REACT_APP_TOKEN_HEADER_KEY,
+      JSON.stringify({ user, token })
+    );
 
     setRegisterInput(resetInput);
   };
