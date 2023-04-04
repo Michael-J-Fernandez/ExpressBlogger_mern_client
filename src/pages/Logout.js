@@ -7,7 +7,8 @@ const Logout = () => {
       localStorage.removeItem(process.env.REACT_APP_TOKEN_HEADER_KEY);
     };
     logOut();
-  });
+    window.location.reload();
+  }, []);
 
   return <Navigate to="/" />;
 };
