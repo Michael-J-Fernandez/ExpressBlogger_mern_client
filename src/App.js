@@ -14,8 +14,9 @@ import Home from './pages/Home';
 import BlogsList from './pages/BlogsList'
 import BlogDetails from './pages/BlogDetails';
 import NewBlog from './pages/NewBlog';
+import UsersList from './pages/UsersList';
 
-import api from './api/blogs';
+import api from './api/axios';
 
 function App() {
   const [blogs, setBlogs] = useState([]);
@@ -37,6 +38,7 @@ function App() {
     createRoutesFromElements(
       <Route element={<NavLayout />}>
         <Route index element={<Home />} />
+        <Route path="users" element={<UsersList />} />
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
         <Route path="register" element={<Register />} />
