@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import api from "../api/blogs";
+import api from "../api/axios";
 
 const BlogDetails = ({ blogs, setBlogs }) => {
   const { id } = useParams();
