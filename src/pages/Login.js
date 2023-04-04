@@ -1,14 +1,18 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import api from "../api/blogs";
+import api from "../api/axios";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const resetInput = {
     email: "",
     password: "",
   };
 
   const [loginInput, setLoginInput] = useState(resetInput);
+  const [error, setError] = useState();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,20 +23,34 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const userData = await api.post("/users/login", loginInput);
+    const { data } = await api.post("/users/login", loginInput);
 
-    const { user, token } = userData.data;
+    if ("error" in data) {
+      setError(data.error);
+    } else {
+      const { user, token } = data;
 
-    localStorage.setItem(
-      process.env.REACT_APP_TOKEN_HEADER_KEY,
-      JSON.stringify({ user, token })
-    );
+      localStorage.setItem(
+        process.env.REACT_APP_TOKEN_HEADER_KEY,
+        JSON.stringify({ user, token })
+      );
 
-    setLoginInput(resetInput);
+      setLoginInput(resetInput);
+
+      navigate("/");
+      window.location.reload();
+    }
   };
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
+      <div
+        className="error-message"
+        style={{ color: "red", fontWeight: "800px" }}
+      >
+        {error}
+      </div>
+      <br />
       <label htmlFor="email">
         Email:
         <input
