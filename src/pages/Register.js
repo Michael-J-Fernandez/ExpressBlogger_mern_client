@@ -1,13 +1,17 @@
 import { useState } from "react";
-import api from "../api/blogs";
+import { useNavigate } from "react-router-dom";
+import api from "../api/axios";
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const resetInput = {
     email: "",
     password: "",
   };
 
   const [registerInput, setRegisterInput] = useState(resetInput);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,20 +22,34 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const userData = await api.post("/users/register", registerInput);
+    const { data } = await api.post("/users/register", registerInput);
 
-    const { user, token } = userData.data;
+    if ("error" in data) {
+      setError(data.error);
+    } else {
+      const { user, token } = data;
 
-    localStorage.setItem(
-      process.env.REACT_APP_TOKEN_HEADER_KEY,
-      JSON.stringify({ user, token })
-    );
+      localStorage.setItem(
+        process.env.REACT_APP_TOKEN_HEADER_KEY,
+        JSON.stringify({ user, token })
+      );
 
-    setRegisterInput(resetInput);
+      setRegisterInput(resetInput);
+
+      navigate("/");
+      window.location.reload();
+    }
   };
 
   return (
     <form className="register-form" onSubmit={handleSubmit}>
+      <div
+        className="error-message"
+        style={{ color: "red", fontWeight: "800px" }}
+      >
+        {error}
+      </div>
+      <br />
       <label htmlFor="email">
         Email:
         <input
