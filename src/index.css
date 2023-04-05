@@ -78,11 +78,25 @@ body {
   margin: auto;
 }
 
-.new-blog-form > * {
+.new-blog-form>* {
   margin: 1em;
 }
 
 .back-link {
   text-decoration: none;
   color: black;
+}
+
+.users-list {
+  margin: auto;
+  max-width: 700px;
+}
+
+.users-filter {
+  margin-bottom: 40px;
+}
+
+.user-card {
+  padding: 5px 20px;
+  border-bottom: 2px solid black;
 }
