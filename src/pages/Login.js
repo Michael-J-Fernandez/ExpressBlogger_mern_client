@@ -28,11 +28,11 @@ const Login = () => {
     if ("error" in data) {
       setError(data.error);
     } else {
-      const { user, token } = data;
+      const { name, token } = data;
 
       localStorage.setItem(
         process.env.REACT_APP_TOKEN_HEADER_KEY,
-        JSON.stringify({ user, token })
+        JSON.stringify({ name, token })
       );
 
       setLoginInput(resetInput);
