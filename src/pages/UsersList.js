@@ -3,7 +3,7 @@ import api from "../api/axios";
 
 const UsersList = () => {
   const [users, setUsers] = useState([]);
-  const [filter, setFilter] = useState({ query: "", role: "all"});
+  const [filter, setFilter] = useState({ query: "", role: "all" });
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -19,15 +19,24 @@ const UsersList = () => {
     setFilter((prev) => ({ ...prev, [name]: value }));
   };
 
-  const filteredUsers = users.filter(user => {
-    if (filter.role === "all") {
-      return true;
-    } else {
-      return user.userRole === filter.role
-    }
-    
-  }).filter(user => user.email.includes(filter.query));
-  
+  const filteredUsers = users
+    .filter((user) => {
+      if (filter.role === "all") {
+        return true;
+      } else {
+        return user.userRole === filter.role;
+      }
+    })
+    .filter((user) => {
+      const { fName, lName, email } = user;
+      const searchQuery = filter.query.toLowerCase();
+
+      return (
+        email.includes(searchQuery) ||
+        fName.toLowerCase().includes(searchQuery) ||
+        lName.toLowerCase().includes(searchQuery)
+      );
+    });
 
   return (
     <div className="users-list">
@@ -52,7 +61,7 @@ const UsersList = () => {
             checked={filter.role === "all"}
             onChange={(e) => handleChange(e)}
           />
-           All
+          All
         </label>
         <label htmlFor="user">
           <input
@@ -63,7 +72,7 @@ const UsersList = () => {
             checked={filter.role === "user"}
             onChange={(e) => handleChange(e)}
           />
-           User
+          User
         </label>
         <label htmlFor="admin">
           <input
@@ -74,11 +83,25 @@ const UsersList = () => {
             checked={filter.role === "admin"}
             onChange={(e) => handleChange(e)}
           />
-           Admin
+          Admin
         </label>
       </div>
       {users ? (
-        filteredUsers.map((user) => <p key={user.id}>{user.email}</p>)
+        filteredUsers.map((user) => {
+          return (
+            <div className="user-card" key={user.id}>
+              <p>
+                <strong>Name:</strong> {user.fName} {user.lName}
+              </p>
+              <p>
+                <strong>Email:</strong> {user.email}
+              </p>
+              <p>
+                <strong>Role:</strong> {user.userRole}
+              </p>
+            </div>
+          );
+        })
       ) : (
         <h1>Loading...</h1>
       )}
