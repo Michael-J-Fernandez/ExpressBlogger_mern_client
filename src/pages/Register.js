@@ -6,6 +6,8 @@ const Register = () => {
   const navigate = useNavigate();
 
   const resetInput = {
+    fName: "",
+    lName: "",
     email: "",
     password: "",
   };
@@ -27,11 +29,11 @@ const Register = () => {
     if ("error" in data) {
       setError(data.error);
     } else {
-      const { user, token } = data;
+      const { name, token } = data;
 
       localStorage.setItem(
         process.env.REACT_APP_TOKEN_HEADER_KEY,
-        JSON.stringify({ user, token })
+        JSON.stringify({ name, token })
       );
 
       setRegisterInput(resetInput);
@@ -50,6 +52,26 @@ const Register = () => {
         {error}
       </div>
       <br />
+      <label htmlFor="fName">
+        First Name:
+        <input
+          type="text"
+          name="fName"
+          id="fName"
+          onChange={(e) => handleChange(e)}
+          value={registerInput.fName}
+        />
+      </label>
+      <label htmlFor="lName">
+        Last Name:
+        <input
+          type="text"
+          name="lName"
+          id="lName"
+          onChange={(e) => handleChange(e)}
+          value={registerInput.lName}
+        />
+      </label>
       <label htmlFor="email">
         Email:
         <input
